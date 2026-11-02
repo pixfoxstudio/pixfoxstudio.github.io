@@ -4,27 +4,30 @@ The official website of **PIXFOX - Studio**, an independent game development stu
 
 ## Website
 
-Once GitHub Pages has been enabled, the site is expected to be available at:
+After transferring the repository to the PIXFOX organization, the site will be available at:
 
-**https://nillfrost.github.io/pixfoxstudio/**
+**https://pixfoxstudio.github.io/**
 
 The site is a fast, responsive static website built with HTML, CSS and a small amount of vanilla JavaScript. No build step or backend is required.
 
-## Publish via GitHub Pages
+## Create the studio organization and publish the site
 
-1. Open this repository on GitHub.
-2. Go to **Settings → Pages**.
-3. Under **Build and deployment**, select **Deploy from a branch**.
-4. Select **main** and **/(root)**, then save.
-5. Wait for GitHub to deploy. Open the URL above to verify that the site loads.
+1. Open https://github.com/account/organizations/new and create a **free** organization with the username `pixfoxstudio` (if available). You can use `PIXFOX - Studio` as the organization's display name.
+2. Open the source repository: https://github.com/NillFrost/pixfoxstudio.
+3. Go to **Settings → General → Danger Zone → Transfer**.
+4. Choose **Select one of my organizations** and select **pixfoxstudio**.
+5. In **Repository name**, enter `pixfoxstudio.github.io`. Transfer and rename together.
+6. Open the moved repository at `https://github.com/pixfoxstudio/pixfoxstudio.github.io`.
+7. Go to **Settings → Pages**; select **Deploy from a branch**, branch **main**, folder **/(root)**; click **Save**.
+8. After deployment, open `https://pixfoxstudio.github.io/`. GitHub Pages publication is not verified until this address actually loads.
 
-You may add a custom domain later; if doing so, change the canonical, Open Graph and structured-data URLs in `index.html`, and update `sitemap.xml`.
+**Important:** If `pixfoxstudio` is already taken, a different organization username produces a different `*.github.io` domain. Do not expect `pixfoxstudio.github.io` from an organization with a different username.
 
 ## Google Play Console website verification
 
 Google Play requires organizations to verify website ownership. Use **Google Search Console** and choose an **URL-prefix property** for:
 
-`https://nillfrost.github.io/pixfoxstudio/`
+`https://pixfoxstudio.github.io/`
 
 Choose **HTML file upload** in Search Console, then put the exact file supplied by Google in the root of this repository (next to `index.html`). After GitHub Pages deploys the file, confirm that its URL works and click **Verify** in Search Console. The account used to verify your website should be the same as your Play Console account if possible. Complete the association request in Play Console.
 
