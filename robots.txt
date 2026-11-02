@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nillfrost.github.io/pixfoxstudio/sitemap.xml
