@@ -63,3 +63,5 @@ Company register: https://find-and-update.company-information.service.gov.uk/com
 Edit the HTML, CSS and JavaScript files directly. The site intentionally contains no fictional game launches or made-up awards. When your real projects are ready to announce, replace the "coming soon" section with genuine game artwork, descriptions and store links.
 
 Before launching games, create a separate app-specific privacy policy describing the actual data practices and SDKs used by each app, if applicable.
+
+<!-- PIXFOX - Studio: verified repository write access for upcoming official pixel-art brand redesign. -->
