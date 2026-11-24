@@ -5,6 +5,7 @@ const RAW = "https://raw.githubusercontent.com/pixfoxstudio/pixfoxstudio.github.
 const COOKIE = "pixfox_admin";
 const STATE_COOKIE = "pixfox_oauth_state";
 const SESSION_SECONDS = 8 * 60 * 60;
+const SESSION_MAX_SECONDS = 7 * 24 * 60 * 60;
 
 function baseHeaders(extra) {
   return Object.assign({
@@ -104,7 +105,7 @@ async function getSession(request, env) {
     session.accessToken = data.access_token;
     session.refreshToken = data.refresh_token || session.refreshToken;
     session.accessExpiresAt = Date.now() + (Number(data.expires_in) || SESSION_SECONDS) * 1000;
-    session.exp = Math.min(session.accessExpiresAt, Date.now() + SESSION_SECONDS * 1000);
+    /* Keep the encrypted session alive while its refresh token remains valid. */
     session._setCookie = await saveSession(session, env);
   }
   return session;
@@ -210,7 +211,7 @@ export default {
       const profile = await github("/user", tokenData.access_token);
       if (String(profile.login).toLowerCase() !== String(env.ADMIN_GITHUB_LOGIN).toLowerCase()) {
         return response("This GitHub account is not allowed to use PIXFOX Admin.", 403, {
-          "Content-Type": "text/plain; charset=utf-8", "Set-Cookie": [clearCookie(STATE_COOKIE), clearCookie(COOKIE)]
+          "Content-Type": "text/plain; charset=utf-8", "Set-Cookie": clearCookie(COOKIE)
         });
       }
       const repo = await github("/repos/" + OWNER + "/" + REPO, tokenData.access_token);
@@ -224,12 +225,13 @@ export default {
       const session = {
         login: profile.login, accessToken: tokenData.access_token, refreshToken: tokenData.refresh_token || "",
         accessExpiresAt: now + accessLifetime * 1000,
-        exp: now + Math.min(accessLifetime, SESSION_SECONDS) * 1000,
+        exp: now + (tokenData.refresh_token ? SESSION_MAX_SECONDS : Math.min(accessLifetime, SESSION_SECONDS)) * 1000,
         csrf: randomHex(24)
       };
-      return new Response(null, { status: 302, headers: baseHeaders({
-        "Location": "/", "Set-Cookie": [await saveSession(session, env), clearCookie(STATE_COOKIE)], "Cache-Control": "no-store"
-      }) });
+      const callbackHeaders = new Headers(baseHeaders({ "Location": "/", "Cache-Control": "no-store" }));
+      callbackHeaders.append("Set-Cookie", await saveSession(session, env));
+      callbackHeaders.append("Set-Cookie", clearCookie(STATE_COOKIE));
+      return new Response(null, { status: 302, headers: callbackHeaders });
     }
 
     if (path.startsWith("/api/")) {
