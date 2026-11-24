@@ -108,14 +108,18 @@
     return item;
   }
   async function save() {
-    if (!state.selectedId) return;
-    const item = collect();
-    if (!item.title) { message("Add a title before saving.", true); return; }
-    const next = state.items.map(entry => entry.id === state.selectedId ? item : entry);
+    let item = null;
+    let next = state.items;
+    if (state.selectedId) {
+      item = collect();
+      if (!item.title) { message("Add a title before saving.", true); return; }
+      next = state.items.map(entry => entry.id === state.selectedId ? item : entry);
+    }
     $("#save-item").disabled = true; message("Saving to GitHub…");
     try {
       await api("/api/save", { method: "POST", headers: { "Content-Type": "application/json", "X-CSRF-Token": state.csrf }, body: JSON.stringify({ collection: state.collection, items: next }) });
-      state.items = next; state.dirty = false; renderList(); renderEditor(item); updateCounts();
+      state.items = next; state.dirty = false; renderList(); updateCounts();
+      if (item) renderEditor(item); else clearEditor();
       message("Saved. GitHub Pages will publish the update in a moment.");
     } catch (error) { message(error.message, true); }
     finally { $("#save-item").disabled = false; }
