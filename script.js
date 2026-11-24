@@ -57,6 +57,7 @@
     const section = document.getElementById('news'), list = document.getElementById('news-list');
     if (!section || !list) return;
     section.hidden = false;
+    const newsNav = document.getElementById('news-nav'); if (newsNav) newsNav.hidden = false;
     posts.slice().sort((a,b) => String(b.date || '').localeCompare(String(a.date || ''))).forEach(post => {
       const card = make('article', 'cms-news-card'), imageUrl = safeUrl(post.image);
       if (imageUrl) {
