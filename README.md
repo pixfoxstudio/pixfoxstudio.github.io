@@ -60,7 +60,7 @@ Company register: https://find-and-update.company-information.service.gov.uk/com
 
 ## Editing
 
-Manage public news and game listings through PIXFOX Admin after completing the one-time Cloudflare Worker and GitHub OAuth setup in [`admin/SETUP.md`](admin/SETUP.md). The admin writes content to `data/news.json` and `data/games.json`; GitHub Pages then publishes the updates. The HTML, CSS and JavaScript can still be edited directly for design or structural changes. The site intentionally contains no fictional game launches or made-up awards.
+Public news and game listings are stored in `data/news.json` and `data/games.json` and displayed automatically by the website. Until the new PIXFOX CMS is ready, these files can be edited directly in GitHub. The HTML, CSS and JavaScript can still be edited directly for design or structural changes. The site intentionally contains no fictional game launches or made-up awards.
 
 Before launching games, create a separate app-specific privacy policy describing the actual data practices and SDKs used by each app, if applicable.
 
