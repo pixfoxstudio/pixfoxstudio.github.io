@@ -31,6 +31,10 @@
     const list = document.getElementById('projects-list');
     if (!list) return;
     list.replaceChildren();
+    const projectsTitle = document.getElementById('projects-title');
+    if (projectsTitle) projectsTitle.innerHTML = 'Our games<br><em>in the making.</em>';
+    const projectsIntro = document.querySelector('.projects-header > p');
+    if (projectsIntro) projectsIntro.textContent = 'Explore the worlds and games currently being built at PIXFOX.';
     games.forEach(game => {
       const card = make('article', 'cms-game-card');
       const copy = make('div', 'cms-game-copy');
@@ -67,6 +71,11 @@
       copy.append(make('div', 'cms-news-meta', [post.category, post.date].filter(Boolean).join(' // ')));
       copy.append(make('h3', '', post.title || 'Studio update'));
       copy.append(make('p', '', post.excerpt || post.body || ''));
+      if (post.body && post.excerpt) {
+        const details = make('details', 'cms-news-full');
+        details.append(make('summary', '', 'Read full story'), make('p', '', post.body));
+        copy.append(details);
+      }
       card.append(copy); list.append(card);
     });
   }).catch(() => {});
