@@ -31,8 +31,6 @@ In Cloudflare: Workers & Pages → pixfox-admin → Settings → Variables and S
 Add as plain-text variables:
 - GITHUB_CLIENT_ID = OAuth app Client ID
 - ADMIN_GITHUB_LOGIN = NillFrost
-- GITHUB_REPO_OWNER = pixfoxstudio
-- GITHUB_REPO_NAME = pixfoxstudio.github.io
 
 Add as Secret values (not plain-text variables):
 - GITHUB_CLIENT_SECRET = OAuth app Client secret
