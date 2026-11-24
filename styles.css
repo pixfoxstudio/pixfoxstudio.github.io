@@ -134,3 +134,5 @@ body{font-size:21px}
 .cms-news-copy p{font-size:21px;line-height:1.35;color:#756e85;margin:0}
 @media(max-width:820px){.cms-game-grid{grid-template-columns:1fr}.cms-news-grid{grid-template-columns:1fr 1fr}.cms-game-card{min-height:320px}}
 @media(max-width:560px){.cms-news-grid{grid-template-columns:1fr}.cms-game-card{grid-template-columns:1fr}.cms-game-visual{min-height:230px}.cms-game-copy{padding:30px 24px}.cms-news-image,.cms-news-placeholder{height:170px}}
+
+.cms-game-grid > .project-card{grid-column:1/-1}
