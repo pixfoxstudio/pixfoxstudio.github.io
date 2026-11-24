@@ -217,7 +217,7 @@ export default {
       const repo = await github("/repos/" + OWNER + "/" + REPO, tokenData.access_token);
       if (!repo.permissions || repo.permissions.push !== true) {
         return response("This GitHub account does not have write access to the PIXFOX website repository.", 403, {
-          "Content-Type": "text/plain; charset=utf-8", "Set-Cookie": [clearCookie(STATE_COOKIE), clearCookie(COOKIE)]
+          "Content-Type": "text/plain; charset=utf-8", "Set-Cookie": clearCookie(COOKIE)
         });
       }
       const now = Date.now();
