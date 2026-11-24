@@ -136,3 +136,7 @@ body{font-size:21px}
 @media(max-width:560px){.cms-news-grid{grid-template-columns:1fr}.cms-game-card{grid-template-columns:1fr}.cms-game-visual{min-height:230px}.cms-game-copy{padding:30px 24px}.cms-news-image,.cms-news-placeholder{height:170px}}
 
 .cms-game-grid > .project-card{grid-column:1/-1}
+
+.cms-news-full{margin-top:14px;border-top:1px solid #e5deec;padding-top:10px;color:#756e85}
+.cms-news-full summary{cursor:pointer;font:22px var(--pixel);color:var(--orange-dark)}
+.cms-news-full p{white-space:pre-line;margin-top:10px}
