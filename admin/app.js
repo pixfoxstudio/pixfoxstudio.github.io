@@ -128,7 +128,7 @@
     if (!state.selectedId) return;
     const item = state.items.find(entry => entry.id === state.selectedId);
     if (!confirm('Delete "' + (item ? item.title : "this item") + '"? Save changes to publish the deletion.')) return;
-    state.items = state.items.filter(entry => entry.id !== state.selectedId); state.selectedId = null;
+    state.items = state.items.filter(entry => entry.id !== state.selectedId); state.selectedId = null; state.dirty = true;
     clearEditor(); renderList(); updateCounts(); $("#save-item").disabled = false;
     message("Item removed from the editor. Press Save changes to publish the deletion.");
   }
