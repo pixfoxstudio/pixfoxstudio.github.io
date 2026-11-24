@@ -60,7 +60,7 @@ Company register: https://find-and-update.company-information.service.gov.uk/com
 
 ## Editing
 
-Edit the HTML, CSS and JavaScript files directly. The site intentionally contains no fictional game launches or made-up awards. When your real projects are ready to announce, replace the "coming soon" section with genuine game artwork, descriptions and store links.
+Manage public news and game listings through PIXFOX Admin after completing the one-time Cloudflare Worker and GitHub OAuth setup in [`admin/SETUP.md`](admin/SETUP.md). The admin writes content to `data/news.json` and `data/games.json`; GitHub Pages then publishes the updates. The HTML, CSS and JavaScript can still be edited directly for design or structural changes. The site intentionally contains no fictional game launches or made-up awards.
 
 Before launching games, create a separate app-specific privacy policy describing the actual data practices and SDKs used by each app, if applicable.
 
